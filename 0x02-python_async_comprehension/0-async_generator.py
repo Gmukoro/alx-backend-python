@@ -3,11 +3,12 @@
 '''
 import asyncio
 import random
+from typing import Generator
 
 
-async def wait_random(max_delay: int = 10) -> float:
-    '''Waits for a random number of seconds.
+async def async_generator() -> Generator[float, None, None]:
+    '''Generates a sequence of 10 numbers.
     '''
-    wait_time = random.random() * max_delay
-    await asyncio.sleep(wait_time)
-    return wait_time
+    for _ in range(10):
+        await asyncio.sleep(1)
+        yield random.random() * 10
